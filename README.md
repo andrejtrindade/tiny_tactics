@@ -14,7 +14,7 @@
  This project is mostly done and uses over 99% of the available tokens and compressed size for a PICO-8 cart. Therefore, I'm not accepting pull requests for this one.
  
 ## Files and Folders
- - **tiny_tactics.p8**: PICO-8 source is a single, plain text file, containing graphics, sound and code (which, in this case, only `#include`s some lua files from the folder below).
+ - **tiny_tactics.p8**: PICO-8 source is a single, plain text file, containing graphics, sound and code (which, in this case, merely includes some lua files from the folder below).
  - **inc**: the lua files included in the .p8 file. The project was structured this way so that the code was better organized and editable in an external editor, outside PICO-8. Lua files were creted in Notepad++.
  - **exports**
    - **cart/tiny_tactics.p8.png**: image with the compressed cartridge embedded into it, playable in PICO-8.
