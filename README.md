@@ -17,14 +17,14 @@
  - **tiny_tactics.p8**: PICO-8 source is a single, plain text file, containing graphics, sound and code (which, in this case, merely includes some lua files from the folder below).
  - **inc**: the lua files included in the .p8 file. The project was structured this way so that the code was better organized and editable in an external editor, outside PICO-8. Lua files were creted in Notepad++.
  - **exports**
-   - **cart/tiny_tactics.p8.png**: image with the compressed cartridge embedded into it, playable in PICO-8.
-   - **html**: standalone HTML version
-   - **bynary apps**: executable versions for Windows, Mac, Linux and Raspberry Pi
-   - **map and sprites** (useful for revieing level layouts)
- - **test_cdata**: save states used for testing the alternative skin reward
+   - **cart/tiny_tactics.p8.png**: image with the compressed cartridge embedded into it, playable in PICO-8. This is what you get if you download the cart from the Lexaloffle BBS.
+   - **html**: standalone HTML version.
+   - **bynary apps**: executable versions for Windows, Mac, Linux and Raspberry Pi. I only tested the Windows .exe, but all of them should work.
+   - **map and sprites**: useful for reviewing level layouts.
+ - **test_cdata**: save files used for testing the alternative skin reward.
  
  ## Cartridge Data
   Cartridge data is how PICO-8 persists your progress. 
-  - If you are using PICO-8 or the binary app in Windows, for example, a text file is saved in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\`.
+  - If you are using PICO-8 or the binary app in Windows, for example, a text file is saved in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\` (default folder).
   - If you are playing on a browser (either on Lexaloffle BBS or using the standalone HTML version), data is saved on the browser's local storage.
  
