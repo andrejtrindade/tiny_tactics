@@ -26,5 +26,5 @@
  ## Cartridge Data
   Cartridge data is how PICO-8 persists your progress. 
   - If you are using PICO-8 or the binary app in Windows, for example, a text file is saved in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\` (default folder).
-  - If you are playing on a browser (either on Lexaloffle BBS or using the standalone HTML version), data is saved on the browser's local storage.
+  - If you are playing on a browser (either on Lexaloffle BBS or using the standalone HTML version), data is saved on the browser's client-side storage.
  
