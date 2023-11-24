@@ -1,7 +1,7 @@
 # tiny_tactics
- Turn-based tactics / puzzle game for PICO-8
+ A turn-based, tactics / puzzle game for PICO-8
 
-## Where to play
+## How to play
  You can play the game or download the cart at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/).
  
 ## Postmortem
@@ -11,11 +11,11 @@
  If you want to know more about PICO-8, check the [PICO-8 landing page](https://www.lexaloffle.com/pico-8.php) or its [FAQ](https://www.lexaloffle.com/pico-8.php?page=faq).
  
 ## Pull requests
- This project is mostly done and uses over 99% of the available tokens and compressed size for a PICO-8 cart. Therefore, I'm not accepting pull requests for this one.
+ This project is mostly done and uses over 99% of the available tokens / compressed size limit for a PICO-8 cart. Therefore, I'm not accepting pull requests for this one.
  
 ## Files and Folders
  - **tiny_tactics.p8**: PICO-8 source is a single, plain text file, containing graphics, sound and code (which, in this case, merely includes some lua files from the folder below).
- - **inc**: the lua files included in the .p8 file. The project was structured this way so that the code was better organized and editable in an external editor, outside PICO-8. Lua files were creted in Notepad++.
+ - **inc**: the lua files included in the .p8 file. The project was structured like this so that the code was better organized and editable in an external editor, outside PICO-8. Lua files were creted in Notepad++.
  - **exports**
    - **cart/tiny_tactics.p8.png**: image with the compressed cartridge embedded into it, playable in PICO-8. This is what you get if you download the cart from the Lexaloffle BBS.
    - **html**: standalone HTML version.
@@ -24,7 +24,7 @@
  - **test_cdata**: save files used for testing the alternative skin reward.
  
  ## Cartridge Data
-  Cartridge data is how PICO-8 persists your progress. 
-  - If you are using PICO-8 or the binary app in Windows, for example, a text file is saved in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\` (default folder).
+  This is how PICO-8 persists your progress.
+  - If you are using PICO-8 or a binary app, your progress is saved in a text file. In Windows, for example, this file is created in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\` (default folder).
   - If you are playing on a browser (either on Lexaloffle BBS or using the standalone HTML version), data is saved on the browser's client-side storage.
  
