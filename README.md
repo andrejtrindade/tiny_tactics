@@ -2,10 +2,10 @@
  A turn-based, tactics / puzzle game for PICO-8
 
 ## How to play
- You can play the game or download the cart at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/).
+ You can play the game or download the cart at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?tid=55172).
  
 ## Postmortem
- You can read about my experience developing *Tiny Tactics* at this [Blog post](https://www.lexaloffle.com/bbs/).
+ I'll write a postmortem and link it here in the future. Check back in a few days.
  
 ## PICO-8
  If you want to know more about PICO-8, check the [PICO-8 landing page](https://www.lexaloffle.com/pico-8.php) or its [FAQ](https://www.lexaloffle.com/pico-8.php?page=faq).
