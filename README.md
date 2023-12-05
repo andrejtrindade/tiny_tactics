@@ -24,6 +24,7 @@
  - **screenshots_gifs**: screenshots and GIFs (recorded in PICO-8) used when posting on the *Lexaloffle BBS*.
  - **test_cdata**: save file used for testing the alternative skin reward.
  - **walkthrough**: GIFs (recored in PICO-8) showing how to get the *dev's record* in each level.
+ - **leaderboards**: GIFs (recored in PICO-8) showing  how to get the gold trophies that I'm aware are possible. First person to claim the record gets the credit (once I can verify the record is really achievable, of course).
  
 ## Cartridge Data
  This is how PICO-8 persists your progress.

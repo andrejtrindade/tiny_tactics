@@ -124,6 +124,12 @@ function calc_base(i)
 	return (i-1)\9+1
 end
 
+function calc_level(i)
+	local l = i%9
+	if l == 0 then l = 9 end
+	return l
+end
+
 -- padding helper functions
 pad_left = function(str, n)
 	if type(str) ~= "string" then str = tostr(str) end

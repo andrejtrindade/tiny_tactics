@@ -64,10 +64,8 @@ level.draw = function(this)
 	if player.is_dead then player:draw() end -- redraw player dead anim over enemies and lock / exit
 
 	-- title bar
-	local l = level.coords.i%9
-	if l == 0 then l = 9 end
 	rectfill(0,0,127,6,c_dark_gray)
-	print("level "..base.."-"..l..": "..level.coords.name, 1, 1, c_gray)
+	print("level "..base.."-"..calc_level(level.coords.i)..": "..level.coords.name, 1, 1, c_gray)
 	
 	-- status bar
 	rectfill(0,121,127,127,c_dark_gray)
