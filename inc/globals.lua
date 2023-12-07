@@ -47,10 +47,13 @@ spr_player_dead      = 60
 spr_side_floor       = 12
 spr_lock             = 71
 spr_trophy           = 87
+-- commented the constants below to save some tokens
+--[[
 spr_side_agent       = 13
 spr_side_boss        = 29
 spr_scientist        = 45
 spr_couple           = 44
+]]
 spr_exit_text_h      = 14
 spr_exit_text_v      = 31
 spr_locked_door_up   = 30

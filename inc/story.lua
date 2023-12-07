@@ -106,14 +106,14 @@ story.draw_graphics = function(this)
 	end
 	if this:is_last_level() then
 		if this.scr == 1 then
-			spr(spr_side_agent, 56, 102)
-			spr(spr_scientist,  64, 102)
+			spr(13, 56, 102) -- spr_side_agent = 13
+			spr(45, 64, 102) -- spr_scientist  = 45
 		else
-			spr(spr_couple, 61, 104)			
+			spr(44, 61, 104) -- spr_couple     = 44
 		end
 	else
-		spr(spr_side_agent, 48, 102)
-		spr(spr_side_boss,  72, 102)
+		spr(13, 48, 102) -- spr_side_agent = 13
+		spr(29, 72, 102) -- spr_side_boss  = 29
 	end
 end
 

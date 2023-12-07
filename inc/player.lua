@@ -24,7 +24,7 @@ player.update = function(this)
 	if key_is_dir(key) then 
 		this.next = get_next_coords(this, key)
 		local tile = level:get_pos(this.next)
-		if can_move(this.next) or is_exit(tile) then start_move_anim(this) 
+		if can_move(this.next) or (is_exit(tile) and #enemies <= 0) then start_move_anim(this) 
 		else play_sfx(1) end
 	else 
 		if     key == k_shoot then start_shoot_anim(this)
