@@ -2,10 +2,10 @@
  A turn-based, tactics / puzzle game for PICO-8
 
 ## How to play
- You can play the game or download the cart at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?tid=55172).
+ You can play the game online or download the cart for PICO-8 at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?tid=55172).
  
 ## Postmortem
- I'll write a postmortem and link it here in the future. Check back in a few days.
+ I wrote an extensive [postmortem](https://www.lexaloffle.com/bbs/?tid=55244) detailing my experience making the game over the last three months.
  
 ## PICO-8
  If you want to know more about PICO-8, check the [PICO-8 landing page](https://www.lexaloffle.com/pico-8.php) or its [FAQ](https://www.lexaloffle.com/pico-8.php?page=faq).
@@ -20,7 +20,7 @@
    - **cart/tiny_tactics.p8.png**: image with the compressed cartridge embedded into it, playable in PICO-8. This is what you get if you download the cart from the Lexaloffle BBS.
    - **html**: standalone HTML version.
    - **bynary apps**: executable versions for Windows, Mac, Linux and Raspberry Pi. I only tested the Windows *.exe*, but all of them should work.
-   - **map and sprites**: useful for reviewing level layouts.
+   - **map and sprites**: useful for reviewing level layouts, for example.
  - **screenshots_gifs**: screenshots and GIFs (recorded in PICO-8) used when posting on the *Lexaloffle BBS*.
  - **test_cdata**: save file used for testing the alternative skin reward.
  - **walkthrough**: GIFs (recored in PICO-8) showing how to get the *dev's record* in each level.
