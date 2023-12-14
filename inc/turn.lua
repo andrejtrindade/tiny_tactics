@@ -1,14 +1,14 @@
 -- turn.lua
 -- ========
 
-turn = {}
+turn = {
 
-turn.start_level = function(this)
+start_level = function(this)
 	this.player = true
 	this.counter = 1
-end
+end,
 	
-turn.finished = function(this)
+finished = function(this)
 	if this.player then
 		if #enemies > 0 then
 			this.player = false
@@ -26,6 +26,8 @@ turn.finished = function(this)
 		end
 	end
 end
+
+}
 
 -- turn helper functions
 function get_next_enemy(enemy)

@@ -9,24 +9,23 @@ sel = {
 	max_unlocked = 1,
 	clears,
 	silvers,
-	golds
-}
+	golds,
 	
-sel.init = function(this)
+init = function(this)
 	this:update_max_unlocked()
 	this.selected = min(this.max_cleared + 1, this.max_unlocked)
-end
+end,
 	
-sel.show = function(this, show_records, selected)
+show = function(this, show_records, selected)
 	if show_records ~= nil then this.show_records = show_records end
 	if selected ~= nil then this.selected = selected end
 	this:update_max_unlocked()
 	this:count_records()
 	screen = this
 	if not title.music then play_music(0) end
-end
+end,
 	
-sel.update = function(this)
+update = function(this)
 	if     btnp(k_up)    and  this.selected%9 ~= 1                                       then this.selected = mid(1, this.selected - 1, coords.num_levels); play_sfx(0)
 	elseif btnp(k_down)  and  this.selected%9 ~= 0 and this.selected < this.max_unlocked then this.selected = mid(1, this.selected + 1, coords.num_levels); play_sfx(0)
 	elseif btnp(k_left)  and  this.selected > 9    then this.selected -= 9; play_sfx(3)
@@ -34,9 +33,9 @@ sel.update = function(this)
 	elseif btnp(k_skip)  then title:show(); play_sfx(2)
 	elseif btnp(k_shoot) then story:show(this.selected, true); play_sfx(2)
 	end
-end
+end,
 	
-sel.draw = function(this)
+draw = function(this)
 	cls()
 	
 	-- base
@@ -110,18 +109,18 @@ sel.draw = function(this)
 	-- buttons
 	local l_comm = this.show_records and "play level" or "play"
 	print_menu_commands(l_comm, "back")
-end
+end,
 
 -- "private" methods
-sel.update_max_unlocked = function(this)
+update_max_unlocked = function(this)
 	this.max_unlocked = options.unlock_progress and coords.num_levels or min(this.max_cleared + 1, coords.num_levels)
-end
+end,
 
-sel.right_enabled = function(this)
+right_enabled = function(this)
 	return this.selected <= (this.max_base-1)*9 and this.max_unlocked > calc_base(this.selected)*9
-end
+end,
 
-sel.count_records = function(this)
+count_records = function(this)
 	this.clears, this.silvers, this.golds = 0, 0, 0
 	for i=1,#records do
 		local record = records[i]
@@ -133,3 +132,5 @@ sel.count_records = function(this)
 		end
 	end
 end
+
+}

@@ -1,9 +1,9 @@
 -- levelclear.lua
 -- ==============
 
-level_clear = {}
+level_clear = {
 
-level_clear.show = function(this)
+show = function(this)
 	local lvl = level.coords.i
 	menuitem(1)
 	menuitem(2)
@@ -12,9 +12,9 @@ level_clear.show = function(this)
 	this.display_reward = options:check_all_trophies()
 	screen = this
 	play_pseudo_music(7)
-end
+end,
 
-level_clear.update = function(this)
+update = function(this)
 	local lvl = level.coords.i
 	if lvl%9 == 0 then
 		if btnp(k_shoot)     then story:show(lvl, false);            play_sfx(2) end
@@ -25,9 +25,9 @@ level_clear.update = function(this)
 		elseif btnp(k_shoot) then level:show(lvl+1);                 play_sfx(2)
 		end
 	end
-end
+end,
 
-level_clear.draw = function(this)
+draw = function(this)
 	local lvl = level.coords.i
 	local plus = records[lvl] == 1000 and "+" or ""
 	local record_text = pad_left(tostr(records[lvl])..plus, 5)
@@ -44,8 +44,16 @@ level_clear.draw = function(this)
 	elseif turn.counter <  level.coords.devs_record then 
 		print_line("you broke the dev's record!", 13, c_white, k_right, 3)
 		spr(spr_trophy,120,78)
+		print_line("solution - take a screenshot!", 0, c_white)
+		for i=0,3 do
+			local o = i*32
+			print_line(sub(solution,o+1,o+32), i+1, c_dark_gray)
+		end
+		print_line("x=shoot,s=skip,l=left,u=up...", (#solution\32)+2)
 	else print_line("dev's record: "..devs_text.." turns", 13, c_dark_gray, k_right, 3) end
 	if lvl%9 == 0 then print_menu_commands("next")
 	elseif this.display_reward then print_menu_commands("reward")
 	else print_menu_commands("next level", "select level") end
 end
+
+}

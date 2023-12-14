@@ -3,9 +3,9 @@
 
 -- optimization note: coordinates for each level were combined into a single integer
 
-coords = {}
+coords = {
 
-coords.combined = split(
+combined = split(
 --        x-1          x-2          x-3          x-4          x-5          x-6          x-7          x-8          x-9
 	"0x1200.8408, 0x0000.5407, 0x0500.6305, 0x0004.5609, 0x0b00.7307, 0x000a.5a11, 0x0b09.7709, 0x0014.5c0d, 0x2300.ac1e,".. -- base 1
 	"0x0503.660b, 0x1a00.9917, 0x1a09.9918, 0x1204.8a12, 0x0b03.760f, 0x2d00.b60d, 0x0b10.7713, 0x230c.a918, 0x2d06.bb2b,".. -- base 2
@@ -16,11 +16,9 @@ coords.combined = split(
 	"0x052c.6709, 0x0533.660a, 0x2338.960e, 0x0539.6612, 0x1231.8715, 0x0b39.f714, 0x3820.bb28, 0x6234.fc3b, 0x5327.fd5d,".. -- base 7
 	"0x0020.5709, 0x2c38.970a, 0x0b34.7511, 0x7127.fd22, 0x621a.fd3d, 0x382b.cc46, 0x7134.fc4f, 0x6227.fd61, 0x531a.fd74,".. -- base 8
 	"0x0027.5d0d, 0x1a3b.950e, 0x0034.590b, 0x530d.fd34, 0x710d.fd3c, 0x711a.fd42, 0x620d.fd7c, 0x6200.fd7d, 0x7100.fd63"    -- base 9
-)
+),
 
-coords.num_levels = #(coords.combined)
-
-coords.names = split(
+names = split(
 --   x-1             x-2             x-3             x-4             x-5             x-6             x-7             x-8             x-9
 	"run and gun    ,patience       ,initiative     ,retreat        ,gunslinger     ,outnumbered    ,cornered       ,left and right ,second sight   ,".. -- base 1
 	"camper         ,cover          ,tip toe        ,offset         ,gimme a second ,opportunity    ,half past six  ,bad boys       ,cardinals      ,".. -- base 2
@@ -31,16 +29,20 @@ coords.names = split(
 	"coward         ,cat-and-mouse  ,choose wisely  ,free at last   ,sneaky         ,one at a time? ,double cover   ,sabotage       ,shadow         ,".. -- base 7
 	"restrained     ,change of heart,bewildered     ,surrounded     ,tic-tac-toe    ,crowded        ,crumbs         ,labyrinth      ,sniper maze    ,".. -- base 8
 	"no holds barred,turnaround     ,confined       ,adjustment time,the grid       ,wanted         ,flow managed   ,threadmill     ,the final level"    -- base 9
-)
+),
 
-coords.x_mask = 0xff00
-coords.y_mask =   0xff
-coords.w_mask =    0x0.f
-coords.h_mask =    0x0.0f
-coords.d_mask =    0x0.00ff
+x_mask = 0xff00,
+y_mask =   0xff,
+w_mask =    0x0.f,
+h_mask =    0x0.0f,
+d_mask =    0x0.00ff,
 
-coords.x           = function(this, i) return rotr(band(this.combined[i], this.x_mask), 8)  end
-coords.y           = function(this, i) return      band(this.combined[i], this.y_mask)      end
-coords.w           = function(this, i) return rotl(band(this.combined[i], this.w_mask), 4)  end
-coords.h           = function(this, i) return rotl(band(this.combined[i], this.h_mask), 8)  end
-coords.devs_record = function(this, i) return rotl(band(this.combined[i], this.d_mask), 16) end
+x           = function(this, i) return rotr(band(this.combined[i], this.x_mask), 8)  end,
+y           = function(this, i) return      band(this.combined[i], this.y_mask)      end,
+w           = function(this, i) return rotl(band(this.combined[i], this.w_mask), 4)  end,
+h           = function(this, i) return rotl(band(this.combined[i], this.h_mask), 8)  end,
+devs_record = function(this, i) return rotl(band(this.combined[i], this.d_mask), 16) end,
+
+}
+
+coords.num_levels = #(coords.combined)

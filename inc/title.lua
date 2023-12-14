@@ -4,15 +4,14 @@
 title = {
 	selected  = 1,
 	options   = split("play,controls,options,tips,records"),
-	music = false
-}
+	music = false,
 
-title.show = function(this)
+show = function(this)
 	screen = this
 	if not this.music then play_music(0) end
-end
+end,
 	
-title.update = function(this)
+update = function(this)
 	if     btnp(k_up)    and this.selected > 1             then this.selected -= 1; play_sfx(0)
 	elseif btnp(k_down)  and this.selected < #this.options then this.selected += 1; play_sfx(0)
 	elseif btnp(k_skip)  then
@@ -28,9 +27,9 @@ title.update = function(this)
 		end
 		play_sfx(2)
 	end
-end
+end,
 	
-title.draw = function(this)
+draw = function(this)
 	cls()
 	print("tiny", 4, 0, c_orange) -- 66, 113
 	map(53,61,0,6,16,3)
@@ -42,3 +41,5 @@ title.draw = function(this)
 	end
 	print_menu_commands("select", "sound "..(sound and "off" or "on"))
 end
+
+}

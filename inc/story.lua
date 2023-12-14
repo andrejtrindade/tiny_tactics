@@ -1,9 +1,9 @@
 -- story.lua
 -- =========
 
-story = {}
+story = {
 
-story.show = function(this, number, before_level)
+show = function(this, number, before_level)
 	this.before_level = before_level
 	this.scr = 1
 	if before_level then
@@ -23,9 +23,9 @@ story.show = function(this, number, before_level)
 			level_clear:show()
 		end
 	end
-end
+end,
 	
-story.update = function(this)
+update = function(this)
 	if not btnp(k_shoot) then return end
 	play_sfx(2)
 	if this.before_level then level:show(1) -- level 1
@@ -35,9 +35,9 @@ story.update = function(this)
 		elseif this:is_last_level() then title:show()
 		else sel:show(nil, level.coords.i+1) end
 	end
-end
+end,
 	
-story.draw = function(this)
+draw = function(this)
 	cls()
 	this:draw_graphics()
 	if this.before_level then -- level 1
@@ -73,23 +73,23 @@ story.draw = function(this)
 			else print_menu_commands("secret base "..(base+1)) end
 		end
 	end
-end
+end,
 
-story.mission_briefing_gray = split("2;!;9 ; 4;the enemy has kidnapped our;0 ; 5;best;0 ; 5;!;14 ; 7;we have intel she's being kept;0 ; 8;at the enemy's;0 ; 8;.;28 ;"..
-	"10;your mission, should you choose;0 ; 11;to accept it, is to rescue her!;0 ; 13;good luck!;0", ";")
+mission_briefing_gray = split("2;!;9 ; 4;the enemy has kidnapped our;0 ; 5;best;0 ; 5;!;14 ; 7;we have intel she's being kept;0 ; 8;at the enemy's;0 ; 8;.;28 ;"..
+	"10;your mission, should you choose;0 ; 11;to accept it, is to rescue her!;0 ; 13;good luck!;0", ";"),
 
-story.base_cleared_gray = split("4,but our,0 , 4,is in,18 , 5,another,0 , 5,!,19 , 7,we have intel she's being kept,0 , 8,at the enemy's,0 , 8,.,28 , 10,go rescue her!,0")
+base_cleared_gray = split("4,but our,0 , 4,is in,18 , 5,another,0 , 5,!,19 , 7,we have intel she's being kept,0 , 8,at the enemy's,0 , 8,.,28 , 10,go rescue her!,0"),
 
-story.the_end_gray = split("4;your;0 ; 4;is over.;13 ; 6;we present you a new;0 ; 6;:;28 ; 7;can you get trophies on all;0 ; 8;levels?;0 ; 10;to track your trophies,;0 ;"..
-	"11;choose;0 ; 11;from;15 ; 12;the title screen...;0 ; 14;thank you for playing!;0", ";")
+the_end_gray = split("4;your;0 ; 4;is over.;13 ; 6;we present you a new;0 ; 6;:;28 ; 7;can you get trophies on all;0 ; 8;levels?;0 ; 10;to track your trophies,;0 ;"..
+	"11;choose;0 ; 11;from;15 ; 12;the title screen...;0 ; 14;thank you for playing!;0", ";"),
 
 -- "private" methods
-story.is_last_level = function(this)
+is_last_level = function(this)
 	if this.before_level then return false end
 	return level.coords.i == coords.num_levels
-end
+end,
 
-story.draw_graphics = function(this)
+draw_graphics = function(this)
 	if this:is_last_level() and this.scr == 2 then
 		clip(    0, 96, 128, 16)
 		rectfill(0, 96, 128, 111, c_dark_blue)
@@ -101,7 +101,7 @@ story.draw_graphics = function(this)
 	else
 		for i=0,15 do
 			rectfill(i*8, 96, i*8+8, 104, c_gray)
-			spr(spr_side_floor, i*8, 104)
+			spr(12, i*8, 104) -- spr_side_floor = 12
 		end
 	end
 	if this:is_last_level() then
@@ -116,6 +116,8 @@ story.draw_graphics = function(this)
 		spr(29, 72, 102) -- spr_side_boss  = 29
 	end
 end
+
+}
 
 -- helper functions
 print_thank_you = function()

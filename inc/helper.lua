@@ -130,6 +130,19 @@ function calc_level(i)
 	return l
 end
 
+-- solution helper functions
+function add_dir_to_solution(k)
+	if     k == k_left  then add_to_solution("l")
+	elseif k == k_right then add_to_solution("r")
+	elseif k == k_up    then add_to_solution("u")
+	elseif k == k_down  then add_to_solution("d")
+	end
+end
+
+function add_to_solution(c)
+	solution = solution..c
+end
+
 -- padding helper functions
 pad_left = function(str, n)
 	if type(str) ~= "string" then str = tostr(str) end

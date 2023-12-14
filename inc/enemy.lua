@@ -1,48 +1,49 @@
 -- enemy.lua
 -- =========
 
-enemy_class = {}
+enemy_class = {
 
 -- factory / constructor
-enemy_class.spawn = function(class, x, y, dir, p)
-	local enemy = {}
-	enemy.base = class
+spawn = function(class, x, y, dir, p)
+	local enemy = {
+		base = class,
+		x = x,
+		y = y,
+		off_x = 0,
+		off_y = 0,
+		dir = dir,
+		next = nil,
+		target = nil,
+		frame = 0,
+		palette = p,
+		checks_flanks  = p == palettes.sniper or p == palettes.soldier or p == palettes.bloldier,                                               -- indigo jacket
+		hears_shots    = p == palettes.listener,                                                                                                -- yellow jacket
+		moves          = p == palettes.walker or p == palettes.soldier or p == palettes.blond or p == palettes.bloldier or p == palettes.blerc, -- red-haired or blond
+		moves_caution  = p == palettes.blond or p == palettes.bloldier or p == palettes.blerc,                                                  -- blond
+		shoots_through = p == palettes.merc or p == palettes.blerc                                                                              -- black jacket
+	}
 	setmetatable(enemy, inheritance)
-	enemy.x = x
-	enemy.y = y
-	enemy.off_x = 0
-	enemy.off_y = 0
-	enemy.dir = dir
-	enemy.next = nil
-	enemy.target = nil
 	reset_state(enemy)
-	enemy.frame = 0
-	enemy.palette = p
-	enemy.checks_flanks  = p == palettes.sniper or p == palettes.soldier or p == palettes.bloldier                                               -- indigo jacket
-	enemy.hears_shots    = p == palettes.listener                                                                                                -- yellow jacket
-	enemy.moves          = p == palettes.walker or p == palettes.soldier or p == palettes.blond or p == palettes.bloldier or p == palettes.blerc -- red-haired or blond
-	enemy.moves_caution  = p == palettes.blond or p == palettes.bloldier or p == palettes.blerc                                                  -- blond
-	enemy.shoots_through = p == palettes.merc or p == palettes.blerc                                                                             -- black jacket
 	adjust_sprite(enemy, enemy.dir)
 	add(enemies,enemy)
-end
+end,
 	
 -- "public" methods
-enemy_class.update = function(enemy)
+update = function(enemy)
 	if animate(enemy) then return end
 
 	if can_shoot(enemy.x, enemy.y, enemy.dir, enemy.shoots_through) == player then start_shoot_anim(enemy)
 	else enemy:move() end
-end
+end,
 
-enemy_class.draw = function(enemy)
+draw = function(enemy)
 	set_pal_swap(enemy.palette)
 	draw_object(enemy)
 	pal(0)
-end
+end,
 
 -- "private" methods
-enemy_class.move = function(enemy)
+move = function(enemy)
 	local go_dir, go_right, go_left, go_back = enemy:relative_moves()
 	enemy.moved = false
 	if enemy.checks_flanks then
@@ -60,13 +61,13 @@ enemy_class.move = function(enemy)
 		else enemy:must_turn(go_right, go_left, go_back) end
 	end
 	if not enemy.moved then start_idle_anim(enemy, enemy.dir) end
-end
+end,
 
-enemy_class.can_move_caution = function(enemy, pos)
+can_move_caution = function(enemy, pos)
 	return can_move(pos) and (not (can_shoot(pos.x, pos.y, reverse_dir(player.dir), false, enemy) == player))
-end
+end,
 
-enemy_class.hear = function(enemy)
+hear = function(enemy)
 	local hear_left = enemy.x - player.x
 	local hear_up = enemy.y - player.y
 	local left, right, up, down = enemy:possible_moves()
@@ -74,27 +75,27 @@ enemy_class.hear = function(enemy)
 	if can_move(right) and not (enemy.dir == k_right) and (-hear_left) >= abs(hear_up)   then start_move_anim(enemy, right) end
 	if can_move(up)    and not (enemy.dir == k_up)    and   hear_up    >  abs(hear_left) then start_move_anim(enemy, up)    end
 	if can_move(down)  and not (enemy.dir == k_down)  and (-hear_up)   >  abs(hear_left) then start_move_anim(enemy, down)  end
-end
+end,
 
-enemy_class.must_turn = function(enemy, go_right, go_left, go_back)
+must_turn = function(enemy, go_right, go_left, go_back)
 	local primary, secondary = get_primary_secondary(go_right, go_left)
 	if     can_move(primary)   then start_move_anim(enemy, primary)
 	elseif can_move(secondary) then start_move_anim(enemy, secondary)
 	elseif can_move(go_back)   then start_move_anim(enemy, go_back)
 	-- else skip turn
 	end
-end
+end,
 
-enemy_class.must_turn_caution = function(enemy, go_right, go_left, go_back)
+must_turn_caution = function(enemy, go_right, go_left, go_back)
 	local primary, secondary = get_primary_secondary(go_right, go_left)
 	if     enemy:can_move_caution(primary)   then start_move_anim(enemy, primary)
 	elseif enemy:can_move_caution(secondary) then start_move_anim(enemy, secondary)
 	elseif enemy:can_move_caution(go_back)   then start_move_anim(enemy, go_back)
 	-- else skip turn
 	end
-end
+end,
 
-enemy_class.relative_moves = function(enemy)
+relative_moves = function(enemy)
 	local left, right, up, down = enemy:possible_moves()
 	local go_dir, go_right, go_left, go_back
 	if enemy.dir == k_left then
@@ -119,15 +120,17 @@ enemy_class.relative_moves = function(enemy)
 		go_back  = up
 	end
 	return go_dir, go_right, go_left, go_back
-end
+end,
 
-enemy_class.possible_moves = function(enemy)
+possible_moves = function(enemy)
 	local left  = {x = enemy.x-1, y = enemy.y,   dir = k_left}
 	local right = {x = enemy.x+1, y = enemy.y,   dir = k_right}
 	local up    = {x = enemy.x,   y = enemy.y-1, dir = k_up}
 	local down  = {x = enemy.x,   y = enemy.y+1, dir = k_down}
 	return left, right, up, down
 end
+
+}
 
 -- enemy helper functions
 function get_player_distance(coords)

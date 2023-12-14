@@ -2,15 +2,14 @@
 -- ============
 
 controls = {
-	labels_selected = false,
-	key_labels      = false
-}
+	labels_selected = false, 
+	key_labels      = false,
 
-controls.show = function(this)
+show = function(this)
 	screen = this
-end
+end,
 	
-controls.update = function(this)
+update = function(this)
 	local key_pressed = false
 	if btnp(k_skip) then
 		this.key_labels = false
@@ -25,9 +24,9 @@ controls.update = function(this)
 		title:show()
 		play_sfx(2)
 	end
-end
+end,
 	
-controls.draw = function(this)
+draw = function(this)
 	cls()
 	print("gamepad", 98, 12, c_gray)
 	print_lines_color(this.orange_text, c_orange)
@@ -46,10 +45,12 @@ controls.draw = function(this)
 	print_o_button(12, 60, c_blue, true)
 	print_o_button(108, 60, c_blue, false)
 	print_menu_commands("yes", "no", c_gray, false)
-end
+end,
 
-controls.orange_text = split("0,controls,0 , 18,are you using a keyboard?,0")
+orange_text = split("0,controls,0 , 18,are you using a keyboard?,0"),
 
-controls.gray_text   = split("2,keyboard,0 , 5,move,14 , 8,pause,14 , 10,skip,14 , 12,shoot,14")
+gray_text   = split("2,keyboard,0 , 5,move,14 , 8,pause,14 , 10,skip,14 , 12,shoot,14"),
 
-controls.blue_text   = split("4,"..s_up..",3 , 4,"..s_up..",27 , 5,"..s_left..s_down..s_right..",1 , 5,"..s_left.."  "..s_right..",25 , 6,"..s_down..",27 , 12,"..s_x..",3 , 12,"..s_x..",27")
+blue_text   = split("4,"..s_up..",3 , 4,"..s_up..",27 , 5,"..s_left..s_down..s_right..",1 , 5,"..s_left.."  "..s_right..",25 , 6,"..s_down..",27 , 12,"..s_x..",3 , 12,"..s_x..",27")
+
+}

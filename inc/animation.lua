@@ -1,21 +1,24 @@
 -- animation.lua
 -- =============
 
-function start_move_anim(entity, next_pos)
+function start_move_anim(entity, next_pos, key)
 	if next_pos ~= nil then entity.next = next_pos end
 	start_anim(entity)
 	entity.is_moving = true
 	entity.moved     = true
+	if entity == player then add_dir_to_solution(key) end
 end
 
 function start_shoot_anim(entity)
 	start_anim(entity)
 	entity.is_shooting = true
+	if entity == player then add_to_solution("x") end
 end
 
 function start_idle_anim(entity)
 	start_anim(entity)
 	entity.is_idle = true
+	if entity == player then add_to_solution("s") end
 end
 
 function start_anim(entity)

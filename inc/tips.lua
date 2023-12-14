@@ -1,21 +1,21 @@
 -- tips.lua
 -- ========
 
-tips = {}
+tips = {
 
-tips.show = function(this, number, before_level)
+show = function(this, number, before_level)
 	this.scr = 1
 	screen = this
-end
+end,
 	
-tips.update = function(this)
+update = function(this)
 	if not btnp(k_shoot) then return end
 	play_sfx(2)
 	if this.scr == 1 then this.scr = 2
 	else title:show() end
-end
+end,
 	
-tips.draw = function(this)
+draw = function(this)
 	cls()
 	print_line("tips", 0, c_orange)
 	if this.scr == 1 then
@@ -51,14 +51,16 @@ tips.draw = function(this)
 		print_lines_color(this.screen_2_gray)
 		print_menu_commands("title screen")
 	end
-end
+end,
 
-tips.screen_1_white = split("2,when playing a level,0 , 7,hair color,0")
+screen_1_white = split("2,when playing a level,0 , 7,hair color,0"),
 
-tips.screen_1_gray = split("4,you can quit or restart the,0 , 5,level from the pause menu,0 , 9,   red-haired enemies,0 , 10,   keep moving forward,0 ,"..
-	"12,   dark-haired enemies tend,0 , 13,   to skip their turn,0 , 15,   blond enemies will avoid your,0 , 16,   line of sight by moving away,0")
+screen_1_gray = split("4,you can quit or restart the,0 , 5,level from the pause menu,0 , 9,   red-haired enemies,0 , 10,   keep moving forward,0 ,"..
+	"12,   dark-haired enemies tend,0 , 13,   to skip their turn,0 , 15,   blond enemies will avoid your,0 , 16,   line of sight by moving away,0"),
 
-tips.screen_2_white = split("2,jacket color,0 , 13,turn order,0")
+screen_2_white = split("2,jacket color,0 , 13,turn order,0"),
 
-tips.screen_2_gray = split("4,   enemies in yellow jackets,0 , 5,   turn when they hear you shoot,0 , 7,   enemies in indigo jackets,0 , 8,   turn when they see you flank,0 ,"..
+screen_2_gray = split("4,   enemies in yellow jackets,0 , 5,   turn when they hear you shoot,0 , 7,   enemies in indigo jackets,0 , 8,   turn when they see you flank,0 ,"..
 	"10,   enemies in black jackets,0 , 11,   shoot others to aim at you,0 , 15, 1  2  3  4  5  6  7  8  9,0")
+
+}

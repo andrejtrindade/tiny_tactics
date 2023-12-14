@@ -2,15 +2,14 @@
 -- =========
 
 level = {
-	coords = {},
-	off_x = 0,
-	off_y = 0,
-	lock      = {x = 0, y = 0, flip_h = false, flip_v = false, sprite = spr_lock},
+	coords    = {}, 
+	off_x     = 0,
+	off_y     = 0,
+	lock      = {x = 0, y = 0, flip_h = false, flip_v = false, sprite = 71}, -- spr_lock = 71
 	door      = {x = 0, y = 0, flip_h = false, flip_v = false, sprite = spr_locked_door_up},
-	exit_text = {x = 0, y = 0, flip_h = false, flip_v = false, sprite = spr_exit_text_h, w = 1, h = 1}
-}
+	exit_text = {x = 0, y = 0, flip_h = false, flip_v = false, sprite = spr_exit_text_h, w = 1, h = 1},
 	
-level.show = function(this, number)
+show = function(this, number)
 	local x, y
 	for enemy in all(enemies) do del(enemies, enemy) end
 	this:load_coords(number)
@@ -24,23 +23,24 @@ level.show = function(this, number)
 		end
 	end
 	sort_enemies()
+	solution = ""
 	turn:start_level()
 	menuitem(1, "restart level", restart_level)
 	menuitem(2, "quit level", quit_level)
 	screen = this
 	play_music(-1)
-end
+end,
 
-level.update = function(this)
+update = function(this)
 	if turn.player or player.is_dead then
 		player:update()
 	else
 		local enemy = turn.enemy
 		enemy:update()
 	end
-end
+end,
 
-level.draw = function(this)
+draw = function(this)
 	local base = calc_base(level.coords.i)
 	cls()
 	
@@ -74,18 +74,18 @@ level.draw = function(this)
 	-- turn
 	if turn.player then print_line("player turn", 20, c_blue, k_right)
 	else print_line("enemy turn", 20, c_gray, k_right) end
-end
+end,
 
-level.get_pos = function(this, obj)
+get_pos = function(this, obj)
 	return this:get_pos_xy(obj.x, obj.y)
-end
+end,
 
 -- "private" methods
-level.get_pos_xy = function(this, x, y)
+get_pos_xy = function(this, x, y)
 	return mget(x + this.coords.x, y + this.coords.y)
-end
+end,
 
-level.spawn_entities = function(this, x, y, spr_idx)
+spawn_entities = function(this, x, y, spr_idx)
 	-- player
 	if spr_idx == spr_blue_left   then player:spawn(x, y, k_left)  end
 	if spr_idx == spr_blue_left+1 then player:spawn(x, y, k_right) end
@@ -106,9 +106,9 @@ level.spawn_entities = function(this, x, y, spr_idx)
 	if spr_idx == spr_exit_left+1 then this:spawn_exit(x, y, x-0.5, y    , k_right) end
 	if spr_idx == spr_exit_left+2 then this:spawn_exit(x, y, x,     y+0.5, k_up)    end
 	if spr_idx == spr_exit_left+3 then this:spawn_exit(x, y, x,     y-0.5, k_down)  end	
-end
+end,
 
-level.spawn_exit = function(this, x_door, y_door, x_lock, y_lock, dir)
+spawn_exit = function(this, x_door, y_door, x_lock, y_lock, dir)
 	this.door.x, this.door.y, this.lock.x, this.lock.y = x_door, y_door, x_lock, y_lock
 	if dir == k_left or dir == k_right then 
 		this.door.sprite = spr_locked_door_left
@@ -128,9 +128,9 @@ level.spawn_exit = function(this, x_door, y_door, x_lock, y_lock, dir)
 		this.exit_text.sprite = spr_exit_text_h
 	end
 	if dir == k_down then this.off_y += 0.5 end
-end
+end,
 
-level.draw_lock_exit = function(this, base)
+draw_lock_exit = function(this, base)
 	if #enemies <= 0 then
 		if this.door.sprite == spr_locked_door_up   then this.door.sprite = spr_open_door_up   end
 		if this.door.sprite == spr_locked_door_left then this.door.sprite = spr_open_door_left end
@@ -142,9 +142,9 @@ level.draw_lock_exit = function(this, base)
 	pal(0)
 	if #enemies > 0 then draw_object(this.lock)
 	else draw_object_wh(this.exit_text)	end
-end
+end,
 
-level.load_coords = function(this, n)
+load_coords = function(this, n)
 	this.coords.i = n
 	this.coords.x = coords:x(n)
 	this.coords.y = coords:y(n)
@@ -153,6 +153,8 @@ level.load_coords = function(this, n)
 	this.coords.devs_record = coords:devs_record(n)
 	this.coords.name = coords.names[n]
 end
+
+}
 
 -- level helper functions
 spawn_enemies = function(x, y, spr_idx, spr_color_left, rank)

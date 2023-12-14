@@ -11,17 +11,16 @@ options = {
 	boss_skin       = false,
 	all_trophies    = false,
 	max_selected    = 4,
-	show_fps        = false
-}
+	show_fps        = false,
 
-options.show = function(this, selected)
+show = function(this, selected)
 	if this.all_trophies then this.max_selected = 5 end
 	if selected ~= nil then this.selected = selected end
 	screen = this
 	if not title.music then play_music(0) end
-end
+end,
 	
-options.update = function(this)
+update = function(this)
 	if     btnp(k_up)    then this.selected = max(1,                 this.selected-1); play_sfx(0)
 	elseif btnp(k_down)  then this.selected = min(this.max_selected, this.selected+1); play_sfx(0)
 	elseif btnp(k_left)  then 
@@ -47,9 +46,9 @@ options.update = function(this)
 		this.show_fps = not this.show_fps
 		play_sfx(2)
 	end
-end
+end,
 
-options.draw = function(this)
+draw = function(this)
 	cls()
 	print_line("options", 0, c_orange)
 	local buttons_text = (this.speed < 3 and s_left or "  ").."     "..(this.speed > 1 and s_right or "  ")
@@ -71,18 +70,20 @@ options.draw = function(this)
 		print_line_off("title screen", 16, c_gray, 15)
 	end
 	print_menu_commands("title screen", (this.show_fps and "hide fps" or "show fps"))
-end
+end,
 
-options.check_all_trophies = function(this)
+check_all_trophies = function(this)
 	if this.all_trophies then return false end
 	this.all_trophies = true
 	for i=1,#records do
 		if records[i] <= 0 or records[i] > coords:devs_record(i) then this.all_trophies = false end
 	end
 	return this.all_trophies
-end
+end,
 
-options.explanation_dark_gray = split("12;earn trophies for all levels;0 ; 13;to unlock an alternative skin!;0 ; 15;to track your trophies, select;0 ; 16;on the;8", ";")
+explanation_dark_gray = split("12;earn trophies for all levels;0 ; 13;to unlock an alternative skin!;0 ; 15;to track your trophies, select;0 ; 16;on the;8", ";")
+
+}
 
 -- helper functions
 draw_option = function(boolean, selected, text, line, enabled, sel_text, buttons_text)

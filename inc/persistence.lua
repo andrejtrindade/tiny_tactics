@@ -12,10 +12,9 @@ persistence = {
 	boss_skin_bit        =  0b10000000,
 	all_trophies_bit     = 0b100000000,
 	frame                = 0,
-	settings_saved       = false
-}
+	settings_saved       = false,
 
-persistence.init = function(this)
+init = function(this)
 	if not cartdata("ajt_tinytactics_1") then
 		for i=0,63 do dset(i, 0) end
 	end
@@ -24,18 +23,18 @@ persistence.init = function(this)
 		if records[i] > 0 then sel.max_cleared = i end
 	end
 	this:load_configs()
-end
+end,
 	
-persistence.update = function(this, index, record)
+update = function(this, index, record)
 	record = mid(1, record, 1000)
 	if records[index] == 0 or records[index] > record then
 		records[index] = record
 		this:set_record(index, record)
 		return true
 	else return false end
-end
+end,
 
-persistence.draw = function(this)
+draw = function(this)
 	local y = 121
 	local s = (this.settings_saved and "settings" or "record").." saved"
 	if this.frame > 0 then
@@ -45,9 +44,9 @@ persistence.draw = function(this)
 		print(s, 1, y+1, c_white)
 		this.frame -= 1
 	end
-end
+end,
 
-persistence.load_configs = function(this)
+load_configs = function(this)
 	local configs = this:get_record(0)
 	controls.labels_selected = check_bit(configs, this.labels_selected_bit)
 	if controls.labels_selected then
@@ -59,9 +58,9 @@ persistence.load_configs = function(this)
 		options.boss_skin       = check_bit(configs, this.boss_skin_bit)
 		options.all_trophies    = check_bit(configs, this.all_trophies_bit)
 	end
-end
+end,
 
-persistence.save_configs = function(this)
+save_configs = function(this)
 	local configs = 0
 	if controls.labels_selected then configs = bor(configs, this.labels_selected_bit) end
 	if controls.key_labels      then configs = bor(configs, this.key_labels_bit)      end
@@ -74,6 +73,8 @@ persistence.save_configs = function(this)
 	configs = bor(configs, band(rotl(options.skin,  7), this.skin_mask))
 	this:set_record(0, configs)
 end
+
+}
 	
 -- "private" methods
 persistence.get_record = function(this, index)
