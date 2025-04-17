@@ -12,10 +12,10 @@ end,
 update = function(this)
 	-- using pause menu callbacks
 	if btnp(k_skip) then 
-		quit_level()
+		quit_level(32) -- like pressing X on pause menu
 		play_sfx(2)
 	elseif btnp(k_shoot) then
-		restart_level()
+		restart_level(32) -- like pressing X on pause menu
 		play_sfx(2)
 	end
 end,

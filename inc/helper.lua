@@ -151,13 +151,17 @@ pad_left = function(str, n)
 end
 
 -- pause menu callbacks (also used by game over screen)
-function quit_level()
+function quit_level(b)
+	if b & 1 > 0 or b & 2 > 0 then return true end -- left or right pressed
 	menuitem(1)
 	menuitem(2)
 	sel:show(nil, level.coords.i)
+	return false
 end
 
-function restart_level()
+function restart_level(b)
+	if b & 1 > 0 or b & 2 > 0 then return true end -- left or right pressed
 	play_pseudo_music(-1)
 	level:show(level.coords.i)
+	return false
 end
