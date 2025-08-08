@@ -1,6 +1,6 @@
 # tiny_tactics
- ![Static Badge](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-green)
- ![GitHub top language](https://img.shields.io/github/languages/top/andrejtrindade/tiny_tactics)
+ [![License](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-green)](LICENSE)
+ [![Language](https://img.shields.io/badge/language-Lua-blue)](https://www.lua.org/)
 
  A turn-based, tactics / puzzle game for PICO-8
 
