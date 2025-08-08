@@ -1,11 +1,16 @@
 # tiny_tactics
+ ![Tiny Tactics PICO-8 cart](exports/cart/tiny_tactics.p8.png)
+
  [![License](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-green)](LICENSE)
  [![Language](https://img.shields.io/badge/language-Lua-blue)](https://www.lua.org/)
+ [![GitHub Release](https://img.shields.io/github/v/release/andrejtrindade/tiny_tactics)](releases)
 
  A turn-based, tactics / puzzle game for PICO-8
 
 ## How to play
- You can play the game online or download the cart for PICO-8 at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?tid=55172).
+ You can play the game online at the [Lexaloffle BBS](https://www.lexaloffle.com/bbs/?tid=55172).
+
+ You can also download the [latest release](releases) and play offline.
  
 ## Postmortem
  I wrote an extensive [postmortem](https://www.lexaloffle.com/bbs/?tid=55244) detailing my experience making the game over the last three months.
@@ -31,9 +36,9 @@
  
 ## Cartridge Data
  This is how PICO-8 persists your progress.
- - If you are using PICO-8 or a binary app, your progress is saved in a text file. In Windows, for example, this file is created in `C:\Users\[username]\AppData\Roaming\pico-8\cdata\` (default folder).
- - If you are playing on a browser (either on Lexaloffle BBS or using the standalone HTML version), data is saved on the browser's client-side storage.
+ - If you are using PICO-8 or a binary app, your progress is saved in a text file. In Windows, for example, this file is created in the following folder (by default):
+`C:\Users\[username]\AppData\Roaming\pico-8\cdata\`
+ - If you are playing on a browser (either online or using the standalone HTML version), data is saved on the browser's client-side storage.
  
 ## Notes
- - This project was uploaded to GitHub when it was almost done, so do not expect much from commit history. 
- 
+ - This project was uploaded to GitHub when it was almost done, so do not expect much from commit history.
