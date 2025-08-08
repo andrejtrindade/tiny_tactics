@@ -1,4 +1,7 @@
 # tiny_tactics
+ ![Static Badge](https://img.shields.io/badge/license-CC--BY--NC--SA--4.0-green)
+ ![GitHub top language](https://img.shields.io/github/languages/top/andrejtrindade/tiny_tactics)
+
  A turn-based, tactics / puzzle game for PICO-8
 
 ## How to play
